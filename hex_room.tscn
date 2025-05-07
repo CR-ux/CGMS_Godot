@@ -1,5 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://p77le3imvakf"]
+[gd_scene load_steps=5 format=3 uid="uid://p77le3imvakf"]
 
+[ext_resource type="Script" uid="uid://b2he4cftdpprw" path="res://Loaders/VaultLoader.gd" id="1_ce8l3"]
+[ext_resource type="Script" uid="uid://caq6878q42n6j" path="res://readJSON.gd" id="1_dbto7"]
 [ext_resource type="Texture2D" uid="uid://bvy6xhd80d0lw" path="res://assets/cgmsbearhunt.jpeg" id="1_v80a2"]
 [ext_resource type="FontFile" uid="uid://cynsbjs610ih4" path="res://assets/OldLondon.ttf" id="2_j5h4q"]
 
@@ -8,6 +10,7 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 1060.0
@@ -33,7 +36,7 @@ offset_left = 111.0
 offset_top = 612.0
 offset_right = 525.0
 offset_bottom = 660.0
-scale = Vector2(1.21845, 1.00725)
+scale = Vector2(1.36963, 1.30119)
 theme_override_constants/separation = 194
 alignment = 1
 
@@ -48,3 +51,30 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_j5h4q")
 theme_override_font_sizes/font_size = 37
 text = "RHP"
+
+[node name="TreePanel" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_dbto7")
+
+[node name="MarkdownLoader" type="HTTPRequest" parent="HBoxContainer/TreePanel"]
+script = ExtResource("1_ce8l3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContentDisplay" type="RichTextLabel" parent="Control"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = 131.0
+offset_right = 63.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(13.04, 11.2)
