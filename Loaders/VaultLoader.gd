@@ -1,5 +1,7 @@
 extends HTTPRequest
 
+var requesting_from: String = ""
+
 signal vault_content_ready(primary_text: String, embedded: Dictionary)
 
 var embedded_results := {}
@@ -25,7 +27,7 @@ func _fetch_file(path: String):
 
 	var full_url = base_url + path
 	set_meta("path", path)
-	var result = request(full_url)
+	var result = request(full_url, [], HTTPClient.METHOD_GET, "")
 	if result != OK:
 		push_error("❌ Request failed for: " + full_url + " | Code: " + str(result))
 

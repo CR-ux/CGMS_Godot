@@ -7,6 +7,7 @@ var current_node: Dictionary
 
 #HTTPs Node:
 @onready var vault_loader := $"MarkdownLoader"
+var requesting_from: String = ""
 
 #Content Display for Room Changes
 @onready var content_display = $"/root/HexRoom/Control/ContentDisplay"
@@ -45,14 +46,15 @@ func load_hex_tree():
 func update_display():
 	if not current_node:
 		return
-	var label = current_node.get("label", "Unnamed")
+	# var label = current_node.get("label", "Unnamed")
 	var next_file = current_node.get("next", "None")
-	content_display.clear()
-	content_display.append_text("Now at: " + label + "\n")
-	content_display.append_text("Next file: " + next_file + "\n")
+	# content_display.clear()
+	# content_display.append_text("	at: " + label + "\n")
+	# content_display.append_text("Next file: " + next_file + "\n")
 	print("👁 Fetching markdown file:", next_file)
 
 	if vault_loader:
+		vault_loader.requesting_from = next_file
 		vault_loader.fetch_markdown(next_file)
 
 func _on_lhp_pressed():
@@ -73,11 +75,30 @@ func _branch_to(index: int):
 
 # Handles loaded vault content and embedded blocks
 func _on_vault_loaded(primary_text: String, embedded: Dictionary):
-	print("🚀 Vault loaded with primary_text:\n", primary_text.substr(0, 100))
-	content_display.clear()
-	content_display.append_text(primary_text)
-	print("🚀 Vault content received!")
+	var new_text := primary_text + "\n"
+	for key in embedded.keys():
+		new_text += "\n\n📎 Embedded block: " + key + "\n" + embedded[key]
+	content_display.text = new_text
 
-	for block in embedded.keys():
-		print("📎 Embedded block:", block)
-		content_display.append_text("\n[embedded: " + block + "]")
+
+func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	var path = vault_loader.requesting_from
+	print("✅ HTTP request completed for:", path)
+
+	if response_code != 200:
+		push_error("Failed to load: " + path + " with code " + str(response_code))
+		return
+
+	var text: String = body.get_string_from_utf8()
+	var links = _extract_links(text)
+	vault_loader.emit_signal("vault_content_ready", text, links)
+
+func _extract_links(text: String) -> Dictionary:
+	var found_links := {}
+	var regex = RegEx.new()
+	regex.compile("!\\[\\[(.*?)\\]\\]")
+
+	for match in regex.search_all(text):
+		var link = match.get_string(1).strip_edges()
+		found_links[link] = link + ".md"
+	return found_links
