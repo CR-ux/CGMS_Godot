@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://p77le3imvakf"]
+
+[ext_resource type="Texture2D" uid="uid://bvy6xhd80d0lw" path="res://assets/cgmsbearhunt.jpeg" id="1_v80a2"]
+
+[node name="HexRoom" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 1060.0
+offset_bottom = 961.0
+scale = Vector2(0.679123, 0.715934)
+texture = ExtResource("1_v80a2")
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = 91.0
+offset_top = 89.0
+offset_right = 187.0
+offset_bottom = 131.0
+rotation = -0.56591
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Queen"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

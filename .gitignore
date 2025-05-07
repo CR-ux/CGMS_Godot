@@ -1,0 +1,41 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific
+.import/
+export.cfg
+export_presets.cfg
+
+# Builds and exported binaries
+*.exe
+*.apk
+*.zip
+*.xcodeproj
+*.pck
+*.godot
+
+# Godot cache files
+*.translation
+mono/
+
+# System junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VSCode
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Backup files
+*.tmp
+*.bak
+*.old
+*.orig
+
+# OS log/crash/system files
+*.log
+*.swp
