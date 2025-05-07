@@ -1,0 +1,378 @@
+{
+  "label": "Centre",
+  "next": "centre.md",
+  "branches": [
+    {
+      "label": "hex-1-A",
+      "next": "hex-1-A.md",
+      "branches": [
+        {
+          "label": "hex-2-1",
+          "next": "hex-2-1.md",
+          "branches": [
+            {
+              "label": "hex-3-1",
+              "next": "hex-3-1.md",
+              "branches": [
+                {
+                  "label": "hex-4-U",
+                  "next": "hex-4-U.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-2",
+              "next": "hex-3-2.md",
+              "branches": [
+                {
+                  "label": "hex-4-U",
+                  "next": "hex-4-U.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-2",
+          "next": "hex-2-2.md",
+          "branches": [
+            {
+              "label": "hex-3-2",
+              "next": "hex-3-2.md",
+              "branches": [
+                {
+                  "label": "hex-4-U",
+                  "next": "hex-4-U.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-3",
+              "next": "hex-3-3.md",
+              "branches": [
+                {
+                  "label": "hex-4-V",
+                  "next": "hex-4-V.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hex-1-B",
+      "next": "hex-1-B.md",
+      "branches": [
+        {
+          "label": "hex-2-3",
+          "next": "hex-2-3.md",
+          "branches": [
+            {
+              "label": "hex-3-3",
+              "next": "hex-3-3.md",
+              "branches": [
+                {
+                  "label": "hex-4-V",
+                  "next": "hex-4-V.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-4",
+              "next": "hex-3-4.md",
+              "branches": [
+                {
+                  "label": "hex-4-V",
+                  "next": "hex-4-V.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-4",
+          "next": "hex-2-4.md",
+          "branches": [
+            {
+              "label": "hex-3-4",
+              "next": "hex-3-4.md",
+              "branches": [
+                {
+                  "label": "hex-4-V",
+                  "next": "hex-4-V.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-5",
+              "next": "hex-3-5.md",
+              "branches": [
+                {
+                  "label": "hex-4-W",
+                  "next": "hex-4-W.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hex-1-C",
+      "next": "hex-1-C.md",
+      "branches": [
+        {
+          "label": "hex-2-5",
+          "next": "hex-2-5.md",
+          "branches": [
+            {
+              "label": "hex-3-5",
+              "next": "hex-3-5.md",
+              "branches": [
+                {
+                  "label": "hex-4-W",
+                  "next": "hex-4-W.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-6",
+              "next": "hex-3-6.md",
+              "branches": [
+                {
+                  "label": "hex-4-W",
+                  "next": "hex-4-W.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-6",
+          "next": "hex-2-6.md",
+          "branches": [
+            {
+              "label": "hex-3-6",
+              "next": "hex-3-6.md",
+              "branches": [
+                {
+                  "label": "hex-4-W",
+                  "next": "hex-4-W.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-7",
+              "next": "hex-3-7.md",
+              "branches": [
+                {
+                  "label": "hex-4-X",
+                  "next": "hex-4-X.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hex-1-D",
+      "next": "hex-1-D.md",
+      "branches": [
+        {
+          "label": "hex-2-7",
+          "next": "hex-2-7.md",
+          "branches": [
+            {
+              "label": "hex-3-7",
+              "next": "hex-3-7.md",
+              "branches": [
+                {
+                  "label": "hex-4-X",
+                  "next": "hex-4-X.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-8",
+              "next": "hex-3-8.md",
+              "branches": [
+                {
+                  "label": "hex-4-X",
+                  "next": "hex-4-X.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-8",
+          "next": "hex-2-8.md",
+          "branches": [
+            {
+              "label": "hex-3-8",
+              "next": "hex-3-8.md",
+              "branches": [
+                {
+                  "label": "hex-4-X",
+                  "next": "hex-4-X.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-9",
+              "next": "hex-3-9.md",
+              "branches": [
+                {
+                  "label": "hex-4-Y",
+                  "next": "hex-4-Y.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hex-1-E",
+      "next": "hex-1-E.md",
+      "branches": [
+        {
+          "label": "hex-2-9",
+          "next": "hex-2-9.md",
+          "branches": [
+            {
+              "label": "hex-3-9",
+              "next": "hex-3-9.md",
+              "branches": [
+                {
+                  "label": "hex-4-Y",
+                  "next": "hex-4-Y.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-10",
+              "next": "hex-3-10.md",
+              "branches": [
+                {
+                  "label": "hex-4-Y",
+                  "next": "hex-4-Y.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-10",
+          "next": "hex-2-10.md",
+          "branches": [
+            {
+              "label": "hex-3-10",
+              "next": "hex-3-10.md",
+              "branches": [
+                {
+                  "label": "hex-4-Y",
+                  "next": "hex-4-Y.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-11",
+              "next": "hex-3-11.md",
+              "branches": [
+                {
+                  "label": "hex-4-Z",
+                  "next": "hex-4-Z.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "hex-1-F",
+      "next": "hex-1-F.md",
+      "branches": [
+        {
+          "label": "hex-2-11",
+          "next": "hex-2-11.md",
+          "branches": [
+            {
+              "label": "hex-3-11",
+              "next": "hex-3-11.md",
+              "branches": [
+                {
+                  "label": "hex-4-Z",
+                  "next": "hex-4-Z.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-12",
+              "next": "hex-3-12.md",
+              "branches": [
+                {
+                  "label": "hex-4-Z",
+                  "next": "hex-4-Z.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "hex-2-12",
+          "next": "hex-2-12.md",
+          "branches": [
+            {
+              "label": "hex-3-12",
+              "next": "hex-3-12.md",
+              "branches": [
+                {
+                  "label": "hex-4-Z",
+                  "next": "hex-4-Z.md",
+                  "branches": []
+                }
+              ]
+            },
+            {
+              "label": "hex-3-1",
+              "next": "hex-3-1.md",
+              "branches": [
+                {
+                  "label": "hex-4-U",
+                  "next": "hex-4-U.md",
+                  "branches": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

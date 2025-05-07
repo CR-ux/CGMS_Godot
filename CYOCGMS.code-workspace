@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../Craft/CYOCGMS"
+		},
+		{
+			"path": "../Craft/cgms_engine"
+		},
+		{
+			"path": "../Craft/CGMS"
+		},
+		{
+			"path": "../React/AI:RA"
+		},
+		{
+			"path": "../React/ai-ra-worker"
+		}
+	]
+}
