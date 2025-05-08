@@ -20,10 +20,12 @@ func _fetch_file(path: String):
 	loaded_paths[path] = true
 
 	var base_url := ""
-	if path.begins_with("hex-"):
+	if path.begins_with("hex-") or path == "centre":
 		base_url = "https://raw.githubusercontent.com/CR-ux/CGMS/main/cgms_engine/The%20Woman%20In%20The%20Wallpaper/"
 	else:
 		base_url = "https://raw.githubusercontent.com/CR-ux/THE-VAULT/main/"
+
+
 
 	var full_url = base_url + path
 	set_meta("path", path)
@@ -42,8 +44,9 @@ func _on_request_completed(_result, response_code, _headers, body):
 	var links = _extract_links(text)
 
 	if path.begins_with("hex-"):
+		var rewritten := wikilinks_to_carpvs(text)
 		print("📤 Emitting vault_content_ready for:", path)
-		emit_signal("vault_content_ready", text, {})
+		emit_signal("vault_content_ready", rewritten, {})
 		return
 
 	embedded_results[path] = text
@@ -55,7 +58,22 @@ func _on_request_completed(_result, response_code, _headers, body):
 
 	if pending_links.size() == 0:
 		print("📤 Emitting vault_content_ready for:", path)
-		emit_signal("vault_content_ready", embedded_results[path], embedded_results)
+		var rewritten := wikilinks_to_carpvs(embedded_results[path])
+		emit_signal("vault_content_ready", rewritten, embedded_results)
+
+func wikilinks_to_carpvs(text: String) -> String:
+	var pattern := "!\\[\\[([^\\]]+)\\]\\]"
+	var regex = RegEx.new()
+	regex.compile(pattern)
+	var matches = regex.search_all(text)
+	for match in matches:
+		var full = match.get_string(0)
+		var inner = match.get_string(1)
+		var slug = inner.replace(" ", "%20").replace("(", "%28").replace(")", "%29")
+		var url = "https://carpvs.com/" + slug
+		var replacement = "[" + inner + "](" + url + ")"
+		text = text.replace(full, replacement)
+	return text
 
 func _extract_links(text: String) -> Dictionary:
 	var found_links := {}

@@ -10,7 +10,7 @@ var current_node: Dictionary
 var requesting_from: String = ""
 
 #Content Display for Room Changes
-@onready var content_display = $"/root/HexRoom/Control/ContentDisplay"
+@onready var content_display = $"/root/HexRoom/Control/MarkdownDisplay"
 
 @onready var lhp = $"/root/HexRoom/HBoxContainer/lhp"
 @onready var rhp = $"/root/HexRoom/HBoxContainer/rhp"
@@ -19,10 +19,9 @@ func _ready():
 	load_hex_tree()
 	lhp.pressed.connect(_on_lhp_pressed)
 	rhp.pressed.connect(_on_rhp_pressed)
-	vault_loader.vault_content_ready.connect(_on_vault_loaded)
+
 	if vault_loader:
 		print("✅ Connected to VaultLoader signal")
-		vault_loader.vault_content_ready.connect(_on_vault_loaded)
 	else:
 		print("⚠️ VaultLoader not found")
 
@@ -47,7 +46,9 @@ func update_display():
 	if not current_node:
 		return
 	# var label = current_node.get("label", "Unnamed")
-	var next_file = current_node.get("next", "None")
+	var next_file = "centre"
+	if current_node.has("next"):
+		next_file = current_node["next"]
 	# content_display.clear()
 	# content_display.append_text("	at: " + label + "\n")
 	# content_display.append_text("Next file: " + next_file + "\n")
@@ -69,6 +70,9 @@ func _branch_to(index: int):
 	if branches.size() > index:
 		current_node = branches[index]
 		update_display()
+		var start_screen = get_node_or_null("/root/HexRoom/StartScreen")
+		if start_screen:
+			start_screen.visible = false
 	else:
 		print("No branch in that direction.")
 
@@ -78,7 +82,7 @@ func _on_vault_loaded(primary_text: String, embedded: Dictionary):
 	var new_text := primary_text + "\n"
 	for key in embedded.keys():
 		new_text += "\n\n📎 Embedded block: " + key + "\n" + embedded[key]
-	content_display.text = new_text
+	content_display.set_text(new_text)
 
 
 func _on_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -89,14 +93,29 @@ func _on_request_completed(_result: int, response_code: int, _headers: PackedStr
 		push_error("Failed to load: " + path + " with code " + str(response_code))
 		return
 
-	var text: String = body.get_string_from_utf8()
+	var text: String = wikilink_to_url(body.get_string_from_utf8())
 	var links = _extract_links(text)
 	vault_loader.emit_signal("vault_content_ready", text, links)
 
+func wikilink_to_url(text: String) -> String:
+	var pattern := r"!\[\[([^\|\]]+)(?:\|.*?)?\]\]"
+	var regex = RegEx.new()
+	regex.compile(pattern)
+	var matches = regex.search_all(text)
+
+	for m in matches:
+		var inner = m.get_string(1)
+		var slug = inner.replace(" ", "%20").replace("(", "%28").replace(")", "%29")
+		var url = "https://carpvs.com/" + slug
+		var markdown_link = "[" + inner + "](" + url + ")"
+		text = text.replace("![[%s]]" % inner, markdown_link)
+	return text
+
 func _extract_links(text: String) -> Dictionary:
 	var found_links := {}
-	var regex = RegEx.new()
-	regex.compile("!\\[\\[(.*?)\\]\\]")
+	var regex := RegEx.new()
+	# Match wikilinks like ![[link]] optionally with |alt and ignoring images
+	regex.compile(r"!\[\[([^\|\]]+)(?:\|.*?)?\]\]")
 
 	for match in regex.search_all(text):
 		var link = match.get_string(1).strip_edges()
